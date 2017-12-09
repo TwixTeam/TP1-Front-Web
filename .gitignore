@@ -1,0 +1,25 @@
+# Eclipse
+.classpath
+.project
+.settings/
+ 
+# Intellij
+.idea/
+*.iml
+*.iws
+ 
+#VS Code
+.settings/
+.vscode/
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node
+node_modules
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+site/build/

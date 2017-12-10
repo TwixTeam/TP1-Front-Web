@@ -21,7 +21,7 @@ const requestCall = () => {
         .then(function () {
             // Syntax OK
             let result = calcule(0, expressionValue)
-            if (result === Infinity) {
+            if (result === Infinity || result === -Infinity) {
                 divResult.innerText = ' Math Error'
             } else {
                 divResult.innerText = calcule(0, expressionValue)

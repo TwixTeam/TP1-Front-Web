@@ -81,6 +81,8 @@ function calcule (v, s) {
     }
     if (operator === '') {
         operator = '+'
+    } else if (operator.length >= 3) {
+        return 'Syntax ERROR'
     }
 
     while (/^[0-9.]$/.test(s[0])) {

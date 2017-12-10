@@ -20,14 +20,20 @@ const requestCall = () => {
     })
         .then(function () {
             // Syntax OK
-            divResult.innerText = calcule(0, expressionValue)
+            let result = calcule(0, expressionValue)
+            if (result === Infinity) {
+                divResult.innerText = ' Divide by 0 is fordidden'
+            } else {
+                divResult.innerText = calcule(0, expressionValue)
+            }
         })
         .catch(function () {
             // Syntax ERROR
-            divResult.innerText = 'Syntax ERROR'
+            divResult.innerText = ' Syntax ERROR'
         })
 }
 
+// math operation
 const calc = (number1, number2, operator) => {
     if (operator !== '') {
         switch (operator) {
@@ -62,6 +68,7 @@ const calc = (number1, number2, operator) => {
     return number1
 }
 
+// calcul logic
 function calcule (v, s) {
     let total = v
     let number = ''
@@ -90,6 +97,4 @@ function calcule (v, s) {
         return total
     }
 }
-// TODO: Case divice by 0
-// TODO: Check expression possible security failure
-// TODO: add calculator logic
+

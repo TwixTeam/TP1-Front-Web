@@ -20,12 +20,75 @@ const requestCall = () => {
     })
         .then(function () {
             // Syntax OK
-            divResult.innerText = 'Syntax is OK'
+            divResult.innerText = calcule(0, expressionValue)
         })
         .catch(function () {
             // Syntax ERROR
             divResult.innerText = 'Syntax ERROR'
         })
+}
+
+const calc = (number1, number2, operator) => {
+    if (operator !== '') {
+        switch (operator) {
+        case '+' :
+        case '--' :
+        case '++':
+            number1 += parseFloat(number2)
+            break
+        case '-' :
+        case '+-' :
+        case '-+':
+            number1 -= parseFloat(number2)
+            break
+        case '*':
+        case '*+':
+            number1 *= parseFloat(number2)
+            break
+        case '*-':
+            number1 *= -parseFloat(number2)
+            break
+        case '/':
+        case '/+':
+            number1 /= parseFloat(number2)
+            break
+        case '/-':
+            number1 /= -parseFloat(number2)
+            break
+        default:
+            break
+        }
+    }
+    return number1
+}
+
+function calcule (v, s) {
+    let total = v
+    let number = ''
+    let operator = ''
+
+    while (/^[+\-*/]$/.test(s[0])) {
+        operator += s[0]
+        s = s.substr(1)
+        console.log(operator)
+    }
+    if (operator === '') {
+        operator = '+'
+    }
+
+    while (/^[0-9.]$/.test(s[0])) {
+        number += s[0]
+        s = s.substr(1)
+        console.log(number)
+    }
+
+    total = calc(total, number, operator)
+
+    if (s !== '') {
+        return calcule(total, s)
+    } else {
+        return total
+    }
 }
 // TODO: Case divice by 0
 // TODO: Check expression possible security failure

@@ -22,7 +22,7 @@ const requestCall = () => {
             // Syntax OK
             let result = calcule(0, expressionValue)
             if (result === Infinity) {
-                divResult.innerText = ' Divide by 0 is fordidden'
+                divResult.innerText = ' Math Error'
             } else {
                 divResult.innerText = calcule(0, expressionValue)
             }
@@ -97,4 +97,3 @@ function calcule (v, s) {
         return total
     }
 }
-

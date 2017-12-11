@@ -3,31 +3,43 @@ import axios from 'axios'
 const form = document.getElementById('form-calculator') // form element
 const expression = document.getElementById('input-expression') // input element
 const divResult = document.getElementById('get-result') // element who displat the result
+const btnCheck = document.getElementById('bouton-check') // element boutton check
+const btnEval = document.getElementById('bouton-evaluate') // element button calculate
 
 let expressionValue
 
 // Prevent reload caused by form submit then do the call
 form.addEventListener('submit', (e) => {
     e.preventDefault()
+})
+
+btnCheck.addEventListener('click', (e) => {
     expressionValue = expression.value
-    requestCall()
+    checkMathSyntax(expressionValue, false)
+})
+
+btnEval.addEventListener('click', (e) => {
+    expressionValue = expression.value
+    checkMathSyntax(expressionValue, true)
 })
 
 // function calling the API to check the expression's syntax
-const requestCall = () => {
+const checkMathSyntax = (params, evaluate) => {
     axios.post('http://localhost:8081/', {
-        'formula': expressionValue
+        'formula': params
     })
-        .then(function () {
+        .then(function (res) {
             // Syntax OK
-            let result = calcule(0, expressionValue)
+            let result = calcule(0, params)
             if (result === Infinity || result === -Infinity) {
                 divResult.innerText = ' Math Error'
+            } else if (evaluate === true) {
+                divResult.innerText = calcule(0, params)
             } else {
-                divResult.innerText = calcule(0, expressionValue)
+                divResult.innerText = 'Syntax OK'
             }
         })
-        .catch(function () {
+        .catch(function (res) {
             // Syntax ERROR
             divResult.innerText = ' Syntax ERROR'
         })

@@ -1,4 +1,5 @@
 const path = require('path')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const SRC_DIR = path.resolve(__dirname, 'site')
 
@@ -26,5 +27,8 @@ module.exports = {
         path: SRC_DIR + '/build',
         filename: 'app.js',
         publicPath: '/build/'
-    }
+    },
+    plugins: [
+        new UglifyJsPlugin()
+    ]
 }

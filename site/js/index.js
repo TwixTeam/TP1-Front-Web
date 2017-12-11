@@ -30,18 +30,22 @@ const checkMathSyntax = (params, evaluate) => {
     })
         .then(function (res) {
             // Syntax OK
-            let result = calcule(0, params)
-            if (result === Infinity || result === -Infinity) {
-                divResult.innerText = ' Math Error'
-            } else if (evaluate === true) {
-                divResult.innerText = calcule(0, params)
-            } else {
+            if (params.match(/[^\d+\-*/]|[+\-*/]{3,}/)) {
+                divResult.innerText = 'Syntax ERROR'
+            } else if (evaluate === false) {
                 divResult.innerText = 'Syntax OK'
+            } else {
+                let result = calcule(0, params)
+                if (result === Infinity || result === -Infinity) {
+                    divResult.innerText = 'Math Error'
+                } else {
+                    divResult.innerText = result
+                }
             }
         })
         .catch(function (res) {
             // Syntax ERROR
-            divResult.innerText = ' Syntax ERROR'
+            divResult.innerText = 'Syntax ERROR'
         })
 }
 
@@ -90,10 +94,9 @@ function calcule (v, s) {
         operator += s[0]
         s = s.substr(1)
     }
+
     if (operator === '') {
         operator = '+'
-    } else if (operator.length >= 3) {
-        return 'Syntax ERROR'
     }
 
     while (/^[0-9.]$/.test(s[0])) {

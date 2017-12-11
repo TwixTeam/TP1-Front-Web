@@ -89,7 +89,6 @@ function calcule (v, s) {
     while (/^[+\-*/]$/.test(s[0])) {
         operator += s[0]
         s = s.substr(1)
-        console.log(operator)
     }
     if (operator === '') {
         operator = '+'
@@ -100,7 +99,6 @@ function calcule (v, s) {
     while (/^[0-9.]$/.test(s[0])) {
         number += s[0]
         s = s.substr(1)
-        console.log(number)
     }
 
     total = calc(total, number, operator)

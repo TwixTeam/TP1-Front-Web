@@ -4,9 +4,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const SRC_DIR = path.resolve(__dirname, 'site')
 
 module.exports = {
-    entry: [
-        SRC_DIR + '/js/index.js'
-    ],
+    entry: SRC_DIR + '/js/index.js',
+    output: {
+        path: SRC_DIR + '/build',
+        filename: 'app.js',
+        publicPath: '/build/'
+    },
     devtool: 'eval-source-map',
     module: {
         rules: [
@@ -23,12 +26,9 @@ module.exports = {
             }
         ]
     },
-    output: {
-        path: SRC_DIR + '/build',
-        filename: 'app.js',
-        publicPath: '/build/'
-    },
     plugins: [
-        new UglifyJsPlugin()
+        new UglifyJsPlugin({
+            sourceMap: true
+        })
     ]
 }

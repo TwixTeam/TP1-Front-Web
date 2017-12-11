@@ -1,3 +1,4 @@
+/* FORM */
 #form-calculator {
 	height: auto;
 	padding: 20px 20px 20px;
@@ -12,6 +13,7 @@
     margin-bottom: 40px;
 }
 
+/* INPUT */
 #input-expression {
 	padding: 0 10px;
 	margin-right: 5px;
@@ -56,6 +58,7 @@
 	text-shadow: 1px 1px 3px #e0e0e0;
 }
 
+/* BUTTON CHECK */
 #bouton-check {
     border-radius: 3px;
     border-color: #dae2ec #a9c7ef #8daacf;
@@ -109,6 +112,7 @@
             user-select: none;
 }
 
+/* BOUTON EVALUATE */
 #bouton-evaluate:hover {
 	background: #e87843;
 	-webkit-box-shadow: 0px 4px #915b42, 0px 10px 15px #419c66;
